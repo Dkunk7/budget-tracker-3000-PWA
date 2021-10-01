@@ -16,7 +16,7 @@ request.onsuccess = function(event) {
 
     // function to check if online, and upload data?
     if (navigator.onLine) {
-
+        uploadBudget();
     }
 };
 
@@ -44,7 +44,7 @@ function uploadBudget() {
     const budgetObjectStore = transaction.objectStore(`new_budget`);
 
     // get all records from store and set it to a variabe
-    const getAll = pizzaObjectStore.getAll();
+    const getAll = budgetObjectStore.getAll();
 
     // on successful getAll, run this
     getAll.onsuccess = function() {
@@ -78,3 +78,6 @@ function uploadBudget() {
         }
     };
 };
+
+// listen for app coming back online
+window.addEventListener(`online`, uploadBudget);
